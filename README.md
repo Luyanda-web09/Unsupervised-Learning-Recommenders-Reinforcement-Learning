@@ -205,3 +205,217 @@ Overall, the process involves training the model, analyzing errors, and iterativ
 
 The algorithm continues to iterate through the assignment and updating steps until there are no changes in point assignments or centroid locations.
 At this point, the algorithm has converged, effectively identifying the clusters within the data set.
+
+The concept of recommender systems, which are widely used in various online platforms to suggest products, movies, or services to users based on their preferences.
+
+Understanding Recommender Systems
+
+Recommender systems analyze user ratings and preferences to suggest items they may like.
+They are crucial for businesses, as a significant portion of sales can be attributed to these systems.
+Example of Movie Ratings
+
+The example illustrates a scenario with users rating movies on a scale of one to five stars.
+The system tracks which users have rated which movies and uses this data to predict ratings for unrated movies.
+Algorithm Development
+
+The course will explore how to develop algorithms to predict user ratings for items they haven't rated yet.
+Initially, the focus will be on using additional features about the items (like movie genres) to enhance recommendations.
+This foundational understanding will set the stage for further exploration of recommender systems in the upcoming lessons.
+
+Developing a recommender system using features of items, specifically movies, to predict user ratings.
+
+Understanding Movie Features
+
+Two features, X1 and X2, are introduced to describe movies: romance and action.
+Each movie is assigned values for these features, indicating their characteristics (e.g., "Love at Last" is highly romantic).
+Predicting User Ratings
+
+The prediction for a user's rating is modeled similarly to linear regression, using parameters w and b.
+Different parameters are used for each user, allowing personalized predictions based on their previous ratings.
+Cost Function and Optimization
+
+A cost function is formulated to minimize the error between predicted and actual ratings, focusing only on movies rated by the user.
+Regularization is added to prevent overfitting, and the overall cost function is summed across all users to learn parameters effectively.
+This approach allows for personalized movie recommendations based on user preferences and movie features.
+
+How to derive features for movies in a collaborative filtering context when those features are not initially known.
+
+Understanding Features in Collaborative Filtering
+
+The discussion begins with the concept of predicting movie ratings using linear regression, where features like romance and action levels (x_1 and x_2) are used.
+It highlights the challenge of not having predefined features and introduces the idea of estimating these features from user ratings.
+Learning Features from User Ratings
+
+The example illustrates how to guess reasonable features for a movie based on user ratings and learned parameters (w and b).
+A cost function is proposed to minimize the squared error between predicted and actual ratings, allowing for the learning of features for each movie.
+Combining Learning of Parameters and Features
+
+The content explains how to combine the cost functions for learning user parameters (w and b) and movie features (x) into a single collaborative filtering algorithm.
+It emphasizes the importance of multiple user ratings in deriving features, which is a key advantage of collaborative filtering over traditional linear regression methods.
+
+Generalizing collaborative filtering algorithms to work with binary labels in recommender systems.
+
+Understanding Binary Labels
+
+Binary labels indicate whether a user liked (1) or did not like (0) an item, with a question mark (?) representing items not yet seen.
+Examples include online shopping (purchase or not) and social media (like or not).
+Generalizing the Algorithm
+
+The algorithm is adapted from linear regression to logistic regression to predict the probability of a user liking an item.
+The logistic function is used to model the probability, transforming the linear prediction into a logistic regression model.
+Cost Function Modification
+
+The cost function is changed from squared error to binary cross-entropy, suitable for binary labels.
+The new cost function sums over all user-item pairs, focusing on the predicted probabilities and actual binary labels.
+This adaptation allows for a broader range of applications in recommender systems, enhancing their effectiveness.
+
+The concept of mean normalization in the context of building a recommender system, particularly for movie ratings.
+
+mean normalization in recommender systems
+
+Mean normalization helps algorithms run more efficiently and improves predictions for users who have not rated any movies.
+By normalizing ratings to have a consistent average, the algorithm can make better predictions for new users, like Eve, who has no prior ratings.
+calculating mean ratings
+
+The average rating for each movie is calculated based on existing ratings, creating a vector of average ratings (μ).
+Ratings are adjusted by subtracting the mean rating for each movie, resulting in new values that allow for better predictions.
+impact on predictions
+
+The adjusted ratings help predict more reasonable ratings for new users, avoiding the assumption that they will rate all movies with zero stars.
+Normalizing the rows of the rating matrix is emphasized as more beneficial for new users compared to normalizing columns, which is less critical for movies with no ratings.
+
+Implementing the collaborative filtering algorithm using TensorFlow, highlighting its capabilities beyond building neural networks.
+
+Understanding TensorFlow's Role
+
+TensorFlow can automatically compute derivatives of cost functions, simplifying the implementation of gradient descent.
+Users only need to define the cost function, allowing TensorFlow to handle the calculus involved.
+Gradient Descent with TensorFlow
+
+The lecture revisits the gradient descent update process, emphasizing the importance of the derivative term.
+TensorFlow's gradient tape feature records operations to enable automatic differentiation, making it easier to optimize parameters.
+Implementing Collaborative Filtering
+
+The collaborative filtering algorithm can be implemented using TensorFlow's tools, including the Adam optimizer for more efficient optimization.
+The cost function for collaborative filtering requires specific inputs, and TensorFlow can compute the necessary derivatives automatically, streamlining the process.
+
+The collaborative filtering algorithm used in online shopping to recommend similar items to users.
+
+Collaborative Filtering Overview
+
+The algorithm identifies features of items (e.g., movies or books) to recommend similar products based on user preferences.
+It calculates the squared distance between feature vectors of items to find those that are most similar.
+Limitations of Collaborative Filtering
+
+Cold Start Problem: New items or users with few ratings can lead to inaccurate recommendations.
+Lack of Side Information: The algorithm does not effectively utilize additional data about items or users, such as demographics or preferences.
+Next Steps
+
+The content hints at exploring content-based filtering algorithms in the following video, which can address some limitations of collaborative filtering.
+
+The development of a content-based filtering algorithm for recommender systems, contrasting it with collaborative filtering.
+
+Collaborative Filtering vs. Content-Based Filtering
+
+Collaborative filtering recommends items based on ratings from similar users.
+Content-based filtering recommends items based on user and item features, aiming for better matches.
+User and Item Features
+
+User features may include age, gender, country, and past behaviors (e.g., movies watched).
+Item features can include movie genre, year, critic reviews, and average ratings.
+Vector Representation
+
+Each user and item is represented by a feature vector (vj_u for users and vi_m for items).
+The dot product of these vectors predicts the rating a user would give to an item.
+In summary, content-based filtering utilizes user and item features to create vectors that help in making personalized recommendations, differing from the collaborative approach that relies solely on user ratings.
+
+The development of a content-based filtering algorithm using deep learning techniques.
+
+User Network and Movie Network
+
+A user network processes user features (e.g., age, gender) to produce a user vector ( v_u ) with 32 units.
+A movie network processes movie features (e.g., year of release, stars) to produce a movie vector ( v_m ).
+Prediction and Cost Function
+
+The predicted rating is calculated as the dot product of ( v_u ) and ( v_m ).
+A cost function ( J ) is constructed to minimize the squared error between predicted ratings and actual ratings, using gradient descent for training.
+Finding Similar Items
+
+The trained model can also identify similar items by measuring the distance between movie vectors.
+Pre-computation of similar items can enhance user experience by quickly providing recommendations.
+Complexity and Feature Engineering
+
+Combining user and movie networks allows for a more complex architecture.
+Careful feature engineering is essential for effective implementation, especially in large catalogs.
+
+The efficient functioning of recommender systems, particularly in handling large catalogs of items.
+
+Retrieval and Ranking Steps
+
+Recommender systems typically operate in two main steps: retrieval and ranking.
+The retrieval step generates a broad list of potential item candidates, which may include items the user may not prefer.
+Retrieval Process
+
+For each of the last 10 items a user interacted with, the system finds similar items, creating an initial list of recommendations.
+Additional items can be added based on the user's preferred genres or popular items in their region.
+Ranking Process
+
+The ranking step refines the list by predicting user ratings for the retrieved items using a neural network.
+The system computes predicted ratings for each user-item pair and displays the highest-rated items to the user.
+Optimization Considerations
+
+The number of items retrieved impacts performance; more items can lead to better recommendations but may slow down the process.
+Offline experiments can help determine the optimal number of items to retrieve for improved relevance in recommendations.
+Ethical Considerations
+
+The content concludes by highlighting the importance of ethical considerations in building recommender systems, emphasizing the need to serve users and society responsibly.
+
+The implications and challenges of recommender systems, particularly focusing on their potential negative impacts on society.
+
+Problematic Use Cases
+
+Recommender systems can prioritize profit over user benefit, leading to recommendations that may not align with users' best interests.
+Examples include recommending ads based on profitability rather than relevance, which can exploit users.
+Advertising Dynamics
+
+The advertising industry can amplify both beneficial and harmful businesses, creating positive or negative feedback loops.
+A good example is the travel industry, where quality service leads to profitability, while the payday loan industry often exploits vulnerable customers.
+User Engagement Concerns
+
+Maximizing user engagement can lead to the amplification of harmful content, such as conspiracy theories and hate speech.
+Companies face challenges in defining and filtering out problematic content while maintaining user trust.
+Transparency and Ethical Considerations
+
+Users often assume recommendations are based on their preferences, not realizing profit motives may drive them.
+Encouraging transparency in recommendation criteria can help build trust and promote ethical practices in AI development.
+
+Implementing content-based filtering using TensorFlow, particularly in the context of recommender systems.
+
+User and Item Networks
+
+The implementation begins with defining a user network and an item network (movies as items) using a sequential model with dense layers.
+Each network consists of two dense hidden layers, with the final layer outputting 32 units.
+Feature Feeding and Normalization
+
+TensorFlow Keras is instructed on how to feed user and item features into the respective networks.
+An important step is normalizing the user and item vectors to have a length of one, enhancing the algorithm's performance.
+Dot Product and Model Definition
+
+The dot product between the user and item vectors is computed using a special Keras layer designed for this purpose.
+The model's inputs and outputs are defined, with the mean squared error cost function selected for training.
+Overall, the content provides key code snippets for implementing a content-based filtering algorithm in TensorFlow, emphasizing the importance of normalization for better performance.
+
+Principal Components Analysis (PCA), an unsupervised learning algorithm used for data visualization.
+
+Understanding PCA
+
+PCA helps reduce high-dimensional data (e.g., 50 or 1,000 features) to two or three dimensions for easier visualization.
+It identifies the most significant features that capture the variance in the data.
+Examples of PCA Application
+
+In a dataset of passenger cars, PCA can determine which features (like length or width) are most informative for visualization.
+For complex datasets, PCA can create new axes (e.g., combining length and height) to summarize information effectively.
+Practical Use of PCA
+
+PCA is commonly used to visualize data from various fields, such as economics, where multiple features (like GDP and Human Development Index) can be reduced to two dimensions for analysis.
+This technique aids in understanding data patterns and identifying anomalies or unexpected trends.
